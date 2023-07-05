@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* 속성값 변수화 */
+        :root {
+            --main-color: blue;
+            --main-bg-color: pink;
+            --sub-color: white;
+            --big-font-size: 30px;
+        }
+
+        div {
+            color: var(--main-color);
+            font-size: var(--big-font-size);
+        }
+
         .fruits span:first-child {
             color: red;
         }
