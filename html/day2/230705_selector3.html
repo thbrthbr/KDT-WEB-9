@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .fruits span:first-child {
+            color: red;
+        }
+
+        .fruits div:first-child {
+            color: red;
+        }
+
+        /* 첫번째 자식이 div일 경우 <- 라고 해석해야 한다 */
+
+        .fruits h3:last-child {
+            color: red;
+        }
+
+        .fruits *:nth-child(n+1) {
+            color: violet;
+        }
+
+        /* 0부터가 아니라 1부터 시작이라 2면 두번째 자식이다 */
+
+        .example::after {
+            content: " 😊 ";
+        }
+
+        .example::before {
+            content: " 👍 ";
+        }
+
+        [type=text] {
+            background-color: red;
+        }
+
+        [disabled] {
+            background-color: green;
+        }
+
+        /* window키 + . 을 누르면 이모지 사용가능 */
+    </style>
+</head>
+
+<body>
+    <div class="fruits">
+        <span>딸기</span>
+        <span>수박</span>
+        <div>오렌지</div>
+        <p>망고</p>
+        <h3>사과</h3>
+    </div>
+    <div class="example">
+        바로가기
+    </div>
+    <input type="text" value="HEROPY">
+    <input type="password" value="1234">
+    <input type="text" value="ABCD" disabled>
+</body>
+
+</html>

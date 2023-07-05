@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자 공부</title>
+    <style>
+        * {
+            color: red;
+        }
+
+        li {
+            color: blue;
+        }
+
+        ul>.orange {
+            color: orange;
+        }
+
+        /* #kiwi {
+            color: green;
+        } */
+
+        .do+span+span+div {
+            color: khaki;
+        }
+    </style>
+</head>
+
+<body>
+    <div> 안녕 </div>
+    <ul>
+        <li>사과</li>
+        <li>딸기</li>
+        <li class="orange">오렌지</li>
+        <li id="kiwi">키위</li>
+        <li id="kiwi">키위</li>
+        <li id="kiwi">키위</li>
+    </ul>
+
+    <span>되나</span>
+    <span class="do">되나</span>
+    <span>되나</span>
+    <span>되나</span>
+    <div>되나</div>
+    <span>되나</span>
+</body>
+
+</html>
