@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            /* background-color: red; */
+            /* margin-top: 10px; */
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .r-1 {
+            left: 50px;
+            /* top: 50px; */
+            background-color: red;
+        }
+
+        /* position이 static(default)가 아니면 left나 right 같은 것들은 주변 요소들에 영향 x */
+        /* position이 static(default)dl면 left나 right 같은 것들이 아예 작동 x */
+        .r-2 {
+            background-color: blue;
+            bottom: -50px;
+        }
+
+        .r-3 {
+            background-color: yellow;
+            right: -10px;
+        }
+
+        .parents {
+            position: relative;
+            width: auto;
+            height: 200px;
+        }
+
+        .absolute {
+            position: absolute;
+            background-color: orange;
+            /* left: 10px;
+            top: 30px; */
+            right: 10px;
+            bottom: 0;
+        }
+
+        .absolute .a-1 {
+            right: 5%;
+            bottom: 20px;
+            background-color: green;
+        }
+
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="relative r-1"></div>
+    <div class="relative r-2"></div>
+    <div class="relative r-3"></div>
+    <div class="parents">
+        <div class="absolute"></div>
+        <div class="absolute a-1"></div>
+    </div>
+
+    <div class="fixed"></div>
+</body>
+
+</html>
