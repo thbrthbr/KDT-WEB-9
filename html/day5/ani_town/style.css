@@ -1,0 +1,212 @@
+/* 
+  TODO: HTML 요소들의 크기는 미리 설정해 두었습니다.
+  position, animation 등을 활용하여 과제를 완성해주세요!
+*/
+
+:root{
+  --background-color: #636888;
+  --background-color: #b1e1e2;
+  --background-color: #fcd2e2;
+  --background-color: #675577;
+  --background-color: #636888;
+}
+
+body {
+  width: 100%;
+  animation: 10s bgColor infinite;
+}
+
+section {
+  margin: auto;
+  width: 700px;
+  height: 450px;
+  position: relative;
+}
+
+section .sky {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+section .sky .sun {
+  width: 180px;
+  position: absolute;
+  animation: 10s sun infinite;
+}
+
+section .sky .moon {
+  width: 160px;
+  position: absolute;
+  animation: 10s moon infinite;
+}
+
+section .sky .cloud_1 {
+  width: 160px;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 10%;
+  animation: 10s bigCloud infinite;
+}
+
+section .sky .cloud_2 {
+  width: 90px;
+  position: absolute;
+  margin-top: 200px;
+  /* margin-left: 40%; */
+  animation: 5s smallCloud infinite;
+}
+
+section .city .city_img {
+  width: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
+
+@keyframes sun {
+  0% {
+      opacity: 0%;
+  }
+
+  25%{
+    opacity: 100%;
+  }
+
+  50%{
+    transform: rotate(180deg);
+    opacity: 0%;
+  }
+/* 
+  75%{
+    opacity: 0%;
+  } */
+
+  100% {
+      opacity: 0%;
+  }
+}
+
+@keyframes moon {
+  0% {
+    transform: rotate(-90deg);
+      opacity: 0%;
+  }
+
+  25%{
+    opacity: 0%;
+  }
+
+  50%{
+    transform: rotate(90deg);
+    opacity: 0%;
+
+  }
+
+  75%{
+    opacity: 100%;
+  }
+
+  100% {
+    transform: rotate(-90deg);
+    opacity: 0%;
+  }
+}
+
+@keyframes bigCloud {
+  0% {
+      margin-left: 10%;
+      opacity: 0%;
+  }
+
+  25%{
+    opacity: 100%;
+  }
+
+  50%{
+      margin-left: 100%;
+      opacity: 0%;
+  }
+
+  75%{
+    opacity: 100%;
+  }
+
+  100% {
+      margin-left: 10%;
+      opacity: 0%;
+  }
+}
+
+@keyframes smallCloud {
+  0% {
+      margin-left: 30%;
+      opacity: 0%;
+  }
+
+  25%{
+    opacity: 100%;
+  }
+
+  50%{
+      margin-left: 120%;
+      opacity: 0%;
+  }
+
+  75%{
+    opacity: 100%;
+  }
+
+  100% {
+      margin-left: 30%;
+      opacity: 0%;
+  }
+}
+
+@keyframes bgColor {
+  0% {
+    background-color: #636888;
+  }
+
+  25%{
+    background-color: #b1e1e2;
+  }
+
+  50%{
+    background-color: #fcd2e2;
+  }
+
+  75%{
+    background-color: #675577;
+  }
+
+  100% {
+    background-color: #636888;
+  }
+}
+
+/* ANIMATION */
+/* 
+  TODO:.5종류의 애니메이션이 필요함
+  - sky: 배경색 변경 애니메이션
+  - sun: sun.png가 회전하는 애니메이션
+  - moon: moon.png가 회전하는 애니메이션
+  - cloud_1: 큰 구름이 좌우로 이동하는 애니메이션
+  - cloud_2: 작은 구름이 좌우로 이동하는 애니메이션
+*/
+
+/*
+  참고: 알아야 할 속성 소개
+  oapcity: 0 ~ 1 사이의 값으로 불투명도를 설정할 수 있음
+  - 0: 요소가 완전히 투명해 보이지 않음
+  - 0~1 사이의 값: 요소가 반투명해 뒤에 내용을 볼 수 있음
+  - 1: 요소가 불투명함 
+*/
+
+/*
+  참고: 배경 색상 종류
+  - background-color: #636888;
+  - background-color: #b1e1e2;
+  - background-color: #fcd2e2;
+  - background-color: #675577;
+  - background-color: #636888;
+*/
