@@ -76,23 +76,15 @@ section .city .city_img {
     transform: rotate(180deg);
     opacity: 0%;
   }
-/* 
-  75%{
-    opacity: 0%;
-  } */
 
   100% {
-      opacity: 0%;
+    opacity: 0%;
   }
 }
 
 @keyframes moon {
   0% {
     transform: rotate(-90deg);
-      opacity: 0%;
-  }
-
-  25%{
     opacity: 0%;
   }
 
