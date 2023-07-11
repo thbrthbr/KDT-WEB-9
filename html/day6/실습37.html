@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let num = prompt("첫번째 숫자를 입력하세요");
+        let num2 = prompt("두번째 숫자를 입력하세요");
+        const add = (num, num2) => {
+            alert(Number(num) + Number(num2));
+        }
+        const sub = (num, num2) => {
+            alert(Number(num) - Number(num2));
+        }
+        const divide = (num, num2) => {
+            alert(Number(num) / Number(num2));
+        }
+        const mul = (num, num2) => {
+            alert(Number(num) * Number(num2));
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="add(num, num2)">더하기</button>
+    <button onclick="sub(num, num2)">빼기</button>
+    <button onclick="divide(num, num2)">나누기</button>
+    <button onclick="mul(num, num2)">곱하기</button>
+</body>
+
+</html>
