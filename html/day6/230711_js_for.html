@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 값 x 값 = 결과
+        // for(let i=1; i<10; i++){
+        //     console.log(`---${i}단---`);
+        //     for(let j=1; j<10; j++){
+        //         console.log(`${i}x${j} = ${i*j}`)
+        //     }
+        // }
+
+        // let fruits = ["apple", "banana", "orange", "grape"]
+        // for (let i = 0; i < fruits.length; i++) {
+        //     console.log(fruits[i]);
+        // }
+
+        let index = 0;
+        while (index < fruits.length) {
+            console.log(fruits[index]);
+            index++;
+        }
+
+        let num = NaN;
+        // while(isNaN(num)){
+        //     num = Number(prompt("숫자를 입력하세요"));
+        //     console.log(num)
+        // }
+
+
+        // while 문은 보통 반복될 횟수가 지정할 수 없을 때
+        let number = 5;
+        while (true) {
+            number = Number(prompt("10 이상의 숫자를 입력하세요"));
+            if (number >= 10) {
+                break;
+            }
+        }
+
+        let i = 2;
+        while (i < 10) {
+            let j = 1;
+            while (j < 10) {
+                console.log(`${i}x${j} = ${i * j}`)
+                j++;
+            }
+            i++;
+        }
+
+
+
+
+        // console.log(num)
+        // console.log(isNaN(num))
+        // 사용자가 숫자를 입력하길 기대하면서,
+        // 1~숫자까지의 합을 구하는 코드
+
+
+
+        // while (조건) {
+        // }
+
+        // let fruits = ["apple", "banana", "orange", "grape"]
+        // for(let i=0; i < fruits.length; i++) {
+        //     if(fruits[i] == "banana") {
+        //         continue
+        //     }
+        //     console.log(fruits[i]);
+        // }
+
+        // let index = -1;
+        // while(index < fruits.length-1){
+        //     index++;
+        //     if(fruits[index] == "banana") {
+        //         continue
+        //     }
+        //     console.log(fruits[index]);
+        // }
+
+        let fruits = ["apple", "banana", "orange", "grape"]
+        for (let i = 0; i < fruits.length; i++) {
+            if (fruits[i] == "banana") {
+                continue
+            }
+            console.log(fruits[i]);
+        }
+        for (let fruit of fruits) {
+            console.log(fruit);
+        }
+
+        // for of 는 이터러블 순회 전용
+        // for in 은 객체 프로퍼티 순회 전용
+
+    </script>
+</body>
+
+</html>
