@@ -15,26 +15,22 @@
     <script>
         let count = 1;
         function post() {
-            let today = new Date();
-            let time = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + " " + today.getHours() + " : " + today.getMinutes();
-            let yoso = document.getElementById("table");
-            let tr = document.createElement("tr");
-            let td1 = document.createElement("td");
-            let td2 = document.createElement("td");
-            let td3 = document.createElement("td");
-            let td4 = document.createElement("td");
-            td1.innerText = count;
-            td2.innerText = document.getElementById("writer").value;
-            td3.innerText = document.getElementById("content").value;
-            td4.innerText = time;
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            yoso.appendChild(tr);
-            count++;
-            document.getElementById("writer").value = "";
-            document.getElementById("content").value = "";
+            if (document.getElementById("writer").value !== "" && document.getElementById("content").value !== "") {
+                let today = new Date();
+                let time = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + " " + today.getHours() + ":" + (today.getMinutes().length > 2 ? `0${today.getMinutes()}` : today.getMinutes());
+                let yoso = document.getElementById("table");
+                let tr = document.createElement("tr");
+                let arr = [count, document.getElementById("writer").value, document.getElementById("content").value, time];
+                for (let i = 0; i < 4; i++) {
+                    let td = document.createElement("td");
+                    td.innerText = arr[i];
+                    tr.appendChild(td);
+                }
+                yoso.appendChild(tr);
+                count++;
+                document.getElementById("writer").value = "";
+                document.getElementById("content").value = "";
+            }
         }
     </script>
 </head>
@@ -42,17 +38,22 @@
 <body>
     방명록입니다
     <br />
+    <br />
     작성자 <input type="text" id="writer">
+    <br />
     <br />
     내용 <input type="text" id="content">
     <br />
+    <br />
     <button onclick="post()">작성</button>
-    <table id="table" style="border: 1px solid black;" cellspacing="0" align="center">
+    <br />
+    <br />
+    <table id="table" style="border: 0.5px solid black;" cellspacing="0">
         <tr>
-            <th style="border: 1px solid black; font-size: 16px; padding: 20px">번호</th>
-            <th style="border: 1px solid black; font-size: 16px; padding: 20px">작성자</th>
-            <th style="border: 1px solid black; font-size: 16px; padding: 20px">내용</th>
-            <th style="border: 1px solid black; font-size: 16px; padding: 20px">작성일</th>
+            <th style="border: 0.5px solid black; font-size: 16px; padding: 10px">번호</th>
+            <th style="border: 0.5px solid black; font-size: 16px; padding: 10px">작성자</th>
+            <th style="border: 0.5px solid black; width: 300px; font-size: 16px; padding: 10px">내용</th>
+            <th style="border: 0.5px solid black; width: 200px; font-size: 16px; padding: 10px">작성일</th>
         </tr>
 
     </table>
