@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let container = document.querySelector(".container")
+        // console.log(container)
+        console.log(container.children)
+
+        let redBox = document.getElementById("red")
+        console.log(redBox.parentNode)
+        console.log(redBox.nextElementSibling)
+
+        let orangeBox = document.getElementById("orange")
+        console.log(orangeBox.previousElementSibling)
+
+
+        function createGreenBox() {
+            let createBox = document.createElement('div')
+            createBox.className = "box green"
+
+            container.append(createBox)
+            // 부모요소(container)에 마지막 자식으로 괄호 안의 요소를 추가
+
+            // container.appendChild(createBox) 
+
+            // container.append("<div>안녕?</div>")
+
+            // append는 매개변수로 문자열과 노드객체를 모두 받을 수 있다.
+            // appendChild 매개변수로 노드객체만 받을 수 있다.
+        }
+
+
+        // redBox.setAttribute("class", "box orange")
+
+        function createGreenBox() {
+            let createBox = document.createElement('div');
+            createBox.className = "box green";
+            container.prepend(createBox);
+            orangeBox.before(createBox);
+        }
+    </script>
+</body>
+
+</html>

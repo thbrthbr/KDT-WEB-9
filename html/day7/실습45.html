@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculate() {
+            let value1 = document.getElementById("one").value;
+            let value2 = document.getElementById("two").value;
+            let value3 = document.getElementById("three").value;
+            let result = 0;
+            if (value3 == "+") {
+                result = Number(value1) + Number(value2);
+            }
+            else if (value3 == "-") {
+                result = Number(value1) - Number(value2);
+            }
+            else if (value3 == "*") {
+                result = Number(value1) * Number(value2);
+            }
+            else if (value3 == "/") {
+                result = Number(value1) / Number(value2);
+            }
+            else {
+                result = "";
+            }
+            document.getElementById("res").value = result;
+        }
+        function reset() {
+            document.getElementById("one").value = "";
+            document.getElementById("two").value = "";
+            document.getElementById("three").value = "";
+            document.getElementById("res").value = "";
+        }
+    </script>
+</head>
+
+<body>
+    값1: <input type="text" id="one">
+    <br />
+    값2: <input type="text" id="two">
+    <br />
+    연산자: <input type="text" id="three">
+    <br />
+    결과: <input type="text" id="res">
+    <br />
+    <button onclick="calculate()">계산하기</button>
+    <button onclick="reset()">초기화</button>
+</body>
+
+</html>

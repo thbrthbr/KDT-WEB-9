@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div name="red" id="red" class="box red">
+            <span>빨간</span>
+            <span>상자</span>
+        </div>
+        <div id="orange" class="box orange"></div>
+        <div class="box yellow"></div>
+    </div>
+
+    <button type="button" onclick="redToggle()">깜빡 깜빡</button>
+
+    <script>
+        // let redBox = document.getElementById("red")
+        // redBox.innerHTML = "<span>aaa</span>"
+        // console.log(redBox.innerText)
+        // console.log(redBox.innerHTML) 
+        // console.log(redBox.textContent) 
+
+        // console.log(redBox.className)
+        // redBox.className = "box yellow"
+
+        // console.log(redBox.classList.add())
+
+        function redToggle() {
+            let redBox = document.getElementsByName("red");
+            let redBox2 = document.getElementsByClassName("red");
+            console.log(redBox);
+            console.log(redBox2);
+            // if (redBox.classList.contains("red")) redBox.classList.remove("red");
+            // else redBox.classList.add("red");
+            redBox[0].classList.toggle("red");
+            // class명을 통해 가져와서 사용하게 되면 toggle 사용이 안된다
+            // name, queryselector을 통해 가져오면 NodeList로 가져오고
+            // id를 통해서 가져오면 그거 딱 하나만 특정이 됨
+            // class를 통해 가져오면 htmlCollection으로 가져오게됨
+        }
+
+        // let container = document.querySelector(".container");
+        // console.log(container.children);
+
+        // let redBox = document.getElementById("red");
+        // console.log(redBox.parentElement);
+
+        // let container = document.querySelector(".container")
+        // // console.log(container)
+        // console.log(container.children)
+
+        // let redBox = document.getElementById("red")
+        // console.log(redBox.parentNode)
+        // console.log(redBox.nextElementSibling)
+
+        // let orangeBox = document.getElementById("orange")
+        // console.log(orangeBox.previousElementSibling)
+
+
+        // function createGreenBox(){
+        //     let createBox = document.createElement('div')
+        //     createBox.className = "box green"
+
+        //     container.append(createBox) 
+        //     // 부모요소(container)에 마지막 자식으로 괄호 안의 요소를 추가
+
+        //     // container.appendChild(createBox) 
+
+        //     // container.append("<div>안녕?</div>")
+
+        //     // append는 매개변수로 문자열과 노드객체를 모두 받을 수 있다.
+        //     // appendChild 매개변수로 노드객체만 받을 수 있다.
+        // }
+
+
+        // // redBox.setAttribute("class", "box orange")
+
+
+        let orangeBox = document.getElementById("orange")
+
+        function createGreenBox() {
+            let createBox = document.createElement('div');
+            createBox.className = "box green";
+            container.prepend(createBox);
+            orangeBox.before(createBox);
+        }
+
+    </script>
+</body>
+
+</html>
