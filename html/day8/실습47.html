@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: auto;
+        }
+
+        div {
+            width: 500px;
+            height: 500px;
+        }
+
+        #img {
+            height: 300px;
+        }
+
+        .flexbox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flexbox2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            opacity: 70%;
+            border-style: none;
+            margin-right: 10px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="flexbox">
+            <img id="img" src="./fir.png">
+            <div class="flexbox2">
+                <button value="사과" class="fruit" id="apple">사과</button>
+                <button value="바나나" class="fruit" id="banana">바나나</button>
+                <button value="포도" class="fruit" id="grapes">포도</button>
+                <button value="복숭아" class="fruit" id="peach" style="margin-right: 0px">복숭아</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        $("button").click(function (e) {
+            $("#img").attr("src", `./${e.target.value}.jpg`);
+        })
+    </script>
+</body>
+
+</html>
