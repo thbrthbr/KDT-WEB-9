@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/837ff3adc1.js" crossorigin="anonymous"></script>
+    <style>
+        .html {
+            padding: 0px;
+        }
+
+        .body {
+            padding: 0px;
+        }
+
+        .divbox {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            background-color: rgb(161, 212, 233);
+            height: 100px;
+        }
+
+        .logo {
+            font-size: 40px;
+            left: 10%;
+            position: absolute;
+            color: white;
+        }
+
+        .item {
+            font-weight: 900;
+            margin-right: 10px;
+        }
+
+        .itembox {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .divbox {
+                position: relative;
+                width: 100%;
+                display: block;
+                padding: 0px;
+                background-color: rgb(161, 212, 233);
+                height: 60px;
+            }
+
+            .itembox {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: rgb(231, 242, 247);
+            }
+
+            .logo {
+                left: 0;
+                margin-left: 10px;
+                font-size: 40px;
+                position: inherit;
+                color: white;
+                text-align: center;
+            }
+
+            .item {
+                text-align: center;
+                width: 900px;
+                margin-right: -10px;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="divbox">
+        <div class="logo">
+            <i class="fa-solid fa-igloo"></i>
+        </div>
+        <div class="itembox">
+            <div class="item">메뉴1</div>
+            <div class="item">메뉴2</div>
+            <div class="item">메뉴3</div>
+            <div class="item">메뉴4</div>
+        </div>
+    </div>
+</body>
+
+</html>

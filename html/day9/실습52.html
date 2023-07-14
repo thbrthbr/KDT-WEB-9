@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 700px) {
+            body {
+                flex-direction: column;
+            }
+
+            div {
+                margin-bottom: 20px;
+                background-color: skyblue;
+            }
+
+        }
+
+        /* @media screen and (max-width: 300px) {
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+        } */
+
+        /* min 기준일 땐 작은거부터 순서대로 */
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: indianred;
+        }
+
+        .box {
+            font-size: 100px;
+        }
+
+        /* @media 유형 and (크기조건) {
+            body{
+
+            }
+        }*/
+        /* 유형 : screen, print, all */
+        /* 크기조건 : max, min-width / max, min-height */
+        /* max-width : 오른쪽에 나온 숫자 값 이하일 때 */
+        /* min-width : 오른쪽에 나온 숫자 값 이상일 때 */
+        @media screen and (max-width: 700px) {
+            body {
+                background-color: green;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            body {
+                background-color: yellow;
+            }
+        }
+
+        @media screen and (max-width: 300px) {
+            body {
+                background-color: black;
+            }
+        }
+
+        /* max 기준일 땐 큰거부터 순서대로 */
+
+        @media print {
+            .box {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- <style>
+        body {
+            background-color: black;
+        }
+
+        @media screen and (min-width: 300px) {
+            body {
+                background-color: indianred;
+            }
+
+        }
+
+        @media screen and (min-width: 500px) {
+            body {
+                background-color: red;
+            }
+
+        }
+
+        /* min 기준일 땐 작은거부터 순서대로 */
+    </style> -->
+
+    <style>
+        /* body {
+            background-color: black;
+        } */
+
+        @media screen and (orientation: landscape) {
+            body {
+                background-color: indianred;
+            }
+
+        }
+
+        /* 가로모드 */
+
+        @media screen and (orientation: portrait) {
+            body {
+                background-color: bisque;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"> Hi </div>
+</body>
+
+</html>
