@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 500px;
+            display: grid;
+            grid-template-areas:
+                "red red red red"
+                "orange yellow yellow green"
+                "orange lightorange lightgreen green"
+                "blue blue blue blue";
+        }
+
+        .red {
+            background-color: #F94144;
+            grid-area: red;
+        }
+
+        .orange {
+            background-color: #F3722c;
+            grid-area: orange;
+
+        }
+
+        .lightorange {
+            background-color: #F8961E;
+            grid-area: lightorange;
+
+        }
+
+        .yellow {
+            background-color: #F9C74F;
+            grid-area: yellow;
+
+        }
+
+        .lightgreen {
+            background-color: #90BE6D;
+            grid-area: lightgreen;
+
+        }
+
+        .green {
+            background-color: #43AA8B;
+            grid-area: green;
+
+        }
+
+        .blue {
+            background-color: #4444FF;
+            grid-area: blue;
+        }
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item red">
+            <p>#F94144</p>
+        </div>
+        <div class="item orange">
+            <p>#F3722c</p>
+        </div>
+        <div class="item lightorange">
+            <p>#F8961E</p>
+        </div>
+        <div class="item yellow">
+            <p>#F9C74F</p>
+        </div>
+        <div class="item green">
+            <p>#43AA8B</p>
+        </div>
+        <div class="item lightgreen">
+            <p>#90BE6D</p>
+        </div>
+        <div class="item blue">
+            <p>#4444FF</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
