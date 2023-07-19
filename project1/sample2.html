@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <style>
+            .card {
+                position: relative;
+                border: 1px solid black;
+                width: 200px;
+                height: 300px;
+                margin-right: 20px;
+                transform-style: preserve-3d;
+            }
+
+            .front {
+                position: absolute;
+                width: 200px;
+                height: 300px;
+                background-color: red;
+                color: white;
+                backface-visibility: hidden;
+            }
+
+            .back {
+                position: absolute;
+                width: 200px;
+                height: 300px;
+                background-color: blue;
+                color: white;
+                transform: rotateY(180deg);
+                backface-visibility: hidden;
+            }
+
+            .cardbox {
+                display: flex;
+            }
+
+            @keyframes flip {
+                from {
+                }
+
+                to {
+                    transform: perspective(800px) rotateY(180deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cardbox">
+            <div id="card1" class="card" onclick="clicker(1)">
+                <div class="front"></div>
+                <div class="back"></div>
+            </div>
+            <div id="card2" class="card" onclick="clicker(2)">
+                <div class="front"></div>
+                <div class="back"></div>
+            </div>
+        </div>
+        <script>
+            function clicker(num) {
+                if (num == 1) {
+                    document.querySelector('#card1').style.animation =
+                        'flip 1s linear alternate'
+                } else {
+                    document.querySelector('#card2').style.animation =
+                        'flip 1s linear alternate'
+                }
+            }
+            // document.querySelector('body').addEventListener('mouseover', () => {
+            //     document
+            //         .querySelector('#card1')
+            //         .style.removeProperty('animation')
+            //     document
+            //         .querySelector('#card2')
+            //         .style.removeProperty('animation')
+            // })
+        </script>
+    </body>
+</html>
