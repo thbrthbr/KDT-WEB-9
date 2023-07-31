@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let color = ['red', 'orange', 'yellow', 'green', 'blue']
+      let num = 0
+      const changeColor = () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            document.querySelector('body').style.backgroundColor = color[num]
+            num++
+            resolve()
+          }, 1000)
+        })
+      }
+      changeColor()
+        .then(changeColor)
+        .then(changeColor)
+        .then(changeColor)
+        .then(changeColor)
+        .then(changeColor)
+        .then(changeColor)
+    </script>
+  </body>
+</html>

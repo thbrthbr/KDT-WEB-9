@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      setTimeout(() => {
+        document.body.style.backgroundColor = 'red'
+        setTimeout(() => {
+          document.body.style.backgroundColor = 'orange'
+          setTimeout(() => {
+            document.body.style.backgroundColor = 'yellow'
+            setTimeout(() => {
+              document.body.style.backgroundColor = 'green'
+              setTimeout(() => {
+                document.body.style.backgroundColor = 'blue'
+                setTimeout(() => {
+                  document.body.style.backgroundColor = 'navy'
+                }, 1000)
+              }, 1000)
+            }, 1000)
+          }, 1000)
+        }, 1000)
+      }, 1000)
+    </script>
+  </body>
+</html>
