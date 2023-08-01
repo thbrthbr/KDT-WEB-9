@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/getForm62" method="GET">
+      이름 <input type="text" name="name" />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" value="남자" /> 남자
+        <input type="radio" name="gender" value="여자" /> 여자
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year">
+          <% for( let i = 1980; i <=2024; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >년
+        <select name="month">
+          <% for( let i = 1; i <=12; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >월
+
+        <select name="day">
+          <% for( let i = 1; i <=31; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >일
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="hobby" value="여행" /> 여행
+        <input type="checkbox" name="hobby" value="패션" /> 패션
+        <input type="checkbox" name="hobby" value="음식" /> 음식
+      </fieldset>
+      <button type="submit">회원가입</button>
+    </form>
+  </body>
+</html>
