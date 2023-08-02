@@ -25,6 +25,8 @@
       <button type="button" onclick="ajaxPost()">ajax post 제출</button>
       <button type="button" onclick="axiosGet()">axios get 제출</button>
       <button type="button" onclick="axiosPost()">axios post 제출</button>
+      <button type="button" onclick="fetchGet()">fetch get 제출</button>
+      <button type="button" onclick="fetchPost()">fetch post 제출</button>
     </form>
     <div class="result"></div>
     <script>
@@ -113,6 +115,50 @@
         const { name, gender } = res.data
         resultBox.textContent = `POST /axios 요청완료 ${name}님은 ${gender}입니다`
         resultBox.style.color = 'purple'
+      }
+      function fetchGet() {
+        console.log('fetch get')
+        const form = document.forms['register']
+        const url = `?name=${form.name.value}&gender=${form.gender.value}`
+        fetch(`/fetch${url}`, {
+          method: 'GET',
+        })
+          .then((res) => {
+            //JSON응답을 네이티브 자바스크립트 객체로 파싱
+            console.log('res', res)
+            return res.json()
+          })
+          .then((data) => {
+            console.log('data', data)
+            resultBox.textContent = `GET /fetch 요청완료 ${data.name}님은 ${data.gender}입니다`
+            resultBox.style.color = 'limegreen'
+          })
+      }
+      function fetchPost() {
+        console.log('fetch post')
+        const form = document.forms['register']
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        }
+        fetch(`/fetch`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+          //JSON.stringify() : 자바스크립트 객체를 JSON 텍스트로 변환
+          //JSON.parse() : JSON형식의 텍스트를 자바스크립트 객체로 변환
+        })
+          .then((res) => {
+            console.log('res', res)
+            return res.json()
+          })
+          .then((data) => {
+            console.log('data', data)
+            resultBox.textContent = `POST /fetch 요청완료 ${data.name}님은 ${data.gender}입니다`
+            resultBox.style.color = 'hotpink'
+          })
       }
     </script>
   </body>

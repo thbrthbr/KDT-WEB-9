@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="register">
+      이름 <input type="text" name="name" />
+      <fieldset>
+        <legend>성별</legend>
+        <input type="radio" name="gender" value="남자" /> 남자
+        <input type="radio" name="gender" value="여자" /> 여자
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year">
+          <% for( let i = 1980; i <=2024; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >년
+        <select name="month">
+          <% for( let i = 1; i <=12; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >월
+
+        <select name="day">
+          <% for( let i = 1; i <=31; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %></select
+        >일
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <input type="checkbox" name="hobby" value="여행" /> 여행
+        <input type="checkbox" name="hobby" value="패션" /> 패션
+        <input type="checkbox" name="hobby" value="음식" /> 음식
+      </fieldset>
+      <button type="button" onclick="axiosGet()">회원가입</button>
+    </form>
+    <div class="result"></div>
+    <script>
+      const resultBox = document.querySelector('.result')
+      function axiosGet() {
+        console.log('axios get')
+        const form = document.forms['register']
+        let temp = []
+        form.hobby.forEach((_, i) => {
+          if (form.hobby[i].checked == true) {
+            temp.push(form.hobby[i].value)
+          }
+        })
+        console.log(temp)
+        let str = ''
+        for (let i = 0; i < temp.length; i++) {
+          if (i == temp.length - 1) {
+            str += temp[i]
+          } else {
+            str += temp[i] + ', '
+          }
+        }
+        // let hobbyArr = Array.from(form.hobby)
+        // let hobbyCollector = []
+        // for (let i = 0; i < hobbyArr.length; i++) {
+        //   if (hobbyArr[i].checked == true) {
+        //     hobbyCollector.push(hobbyArr[i].value)
+        //   }
+        // }
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+          birthdate:
+            form.year.value + '-' + form.month.value + '-' + form.day.value,
+          hobby: str,
+        }
+        axios({
+          method: 'GET',
+          url: 'axios',
+          params: data,
+        }).then((res) => {
+          console.log('res', res)
+          resultBox.textContent = `GET /axios 요청완료 ${res.data.name}님은 ${res.data.gender}이고 생년월일은 ${res.data.birthdate}이며 관심사는 ${res.data.hobby}입니다`
+          resultBox.style.color = 'green'
+        })
+      }
+    </script>
+  </body>
+</html>
