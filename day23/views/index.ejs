@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="register">
+      <laber for="name">이름</laber>
+      <input type="text" id="name" />
+      <br />
+      <input type="radio" name="gender" value="남자" id="male" />
+      <label for="male">남자</label>
+      <input type="radio" name="gender" value="여자" id="female" />
+      <label for="female">여자</label>
+      <br />
+      <button type="button" onclick="ajaxGet()">ajax get 제출</button>
+      <button type="button" onclick="ajaxPost()">ajax post 제출</button>
+      <button type="button" onclick="axiosGet()">axios get 제출</button>
+      <button type="button" onclick="axiosPost()">axios post 제출</button>
+    </form>
+    <div class="result"></div>
+    <script>
+      const resultBox = document.querySelector('.result')
+      const form = document.forms['register']
+      const data = {
+        name: form.name.value,
+        gender: form.gender.value,
+      }
+      function ajaxGet() {
+        console.log('ajax get')
+        // 폼 선택하기
+        const form = document.forms['register']
+        // console.log(form)
+        // console.log(form.name)
+        // console.log(form.gender)
+        // console.log(form.name.value)
+        // console.log(form.gender.value)
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        }
+        $.ajax({
+          type: 'GET',
+          url: '/ajax',
+          data: data,
+          success: (res) => {
+            console.log('res', res)
+            resultBox.textContent = `GET /ajax 요청완료 ${res.userInfo.name}님은 ${res.userInfo.gender}입니다`
+            resultBox.style.color = 'blue'
+          },
+        })
+      }
+      function ajaxPost() {
+        console.log('ajax post')
+        const form = document.forms['register']
+        if (form.name.value === '') {
+          alert('이름을 입력하세요')
+          return
+        }
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        }
+        $.ajax({
+          type: 'POST',
+          url: '/ajax',
+          data: data,
+          success: (res) => {
+            console.log('res', res)
+            resultBox.textContent = `POST /ajax 요청완료 ${res.name}님은 ${res.gender}입니다`
+            resultBox.style.color = 'red'
+          },
+        })
+      }
+      function axiosGet() {
+        console.log('axios get')
+        const form = document.forms['register']
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        }
+        axios({
+          method: 'GET',
+          url: 'axios',
+          params: data,
+        }).then((res) => {
+          console.log('res', res)
+          resultBox.textContent = `GET /axios 요청완료 ${res.data.name}님은 ${res.data.gender}입니다`
+          resultBox.style.color = 'green'
+        })
+      }
+      async function axiosPost() {
+        console.log('axios post')
+        const form = document.forms['register']
+        const data = {
+          name: form.name.value,
+          gender: form.gender.value,
+        }
+        const res = await axios({
+          method: 'POST',
+          url: '/axios',
+          data,
+        })
+        //post는 params가 아니라 data
+        const { name, gender } = res.data
+        resultBox.textContent = `POST /axios 요청완료 ${name}님은 ${gender}입니다`
+        resultBox.style.color = 'purple'
+      }
+    </script>
+  </body>
+</html>
