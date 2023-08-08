@@ -55,7 +55,7 @@ exports.deleteUser = (data, callback) => {
 
 exports.patchUser = (data, callback) => {
   console.log(data.id)
-  const query = `UPDATE login SET userid='${data.id}' WHERE userid='${data.befId}'`
+  const query = `UPDATE login SET userid='${data.id}', name='${data.name}', pw='${data.pw}' WHERE userid='${data.befId}'`
   conn.query(query, (err, rows) => {
     console.log('rows', rows)
     if (err) {

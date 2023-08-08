@@ -17,6 +17,8 @@
     </form>
     <form action="/user/profile" method="post" name="form_profile">
       <input type="hidden" name="id" />
+      <input type="hidden" name="name" />
+      <input type="hidden" name="pw" />
     </form>
     <a href="/user">돌아가기</a>
     <script>
@@ -35,8 +37,9 @@
             alert('로그인에 성공했습니다!')
             const form2 = document.forms['form_profile']
             form2.id.value = form.id.value
+            form2.name.value = res.data.name
+            form2.pw.value = form.id.pw
             form2.submit()
-            // window.location.href = '/user/profile'
           } else {
             alert('로그인에 실패했습니다')
             window.location.href = '/user/signin'

@@ -29,6 +29,9 @@ exports.postSignin = (req, res) => {
     if (rows.length !== 0) {
       res.send({
         result: true,
+        name: rows[0].name,
+        id: rows[0].userid,
+        pw: rows[0].pw,
       })
     } else {
       res.send({

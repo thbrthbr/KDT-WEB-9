@@ -11,9 +11,33 @@
     <form name="profile-form">
       <fieldset>
         <legend>프로필</legend>
+        이름 <input type="text" id="name" name="name" value="<%=data.name%>" />
+        <br />
+        <input
+          type="text"
+          id="modifyName"
+          name="modifyName"
+          placeholder="이름 수정"
+        />
+        <br />
         아이디 <input type="text" id="id" name="id" value="<%=data.id%>" />
         <br />
-        <input type="text" id="modify" name="modify" placeholder="수정할 ID" />
+        <input
+          type="text"
+          id="modifyId"
+          name="modifyId"
+          placeholder="ID 수정"
+        />
+        <br />
+        비밀번호
+        <input type="password" id="pw" name="pw" value="<%=data.pw%>" />
+        <br />
+        <input
+          type="password"
+          id="modifyPw"
+          name="modifyPw"
+          placeholder="PW 수정"
+        />
         <button type="button" onclick="profileEdit()">수정</button>
         <button type="button" onclick="profileDelete()">삭제</button>
       </fieldset>
@@ -21,18 +45,24 @@
     <script>
       const profileEdit = () => {
         const form = document.forms['profile-form']
-        const modify = document.querySelector('#modify').value
+        const modifyId = document.querySelector('#modifyId').value
+        const modifyName = document.querySelector('#modifyName').value
+        const modifyPw = document.querySelector('#modifyPw').value
         axios({
           method: 'PATCH',
           url: '/user/profile/patch',
           data: {
             befId: form.id.value,
-            id: modify,
+            name: modifyName,
+            id: modifyId,
+            pw: modifyPw,
           },
         }).then((res) => {
           console.log(res)
           alert('회원정보 수정 성공!')
-          form.id.value = modify
+          form.id.value = modifyId
+          form.name.value = modifyName
+          form.pw.value = modifyPw
         })
       }
       const profileDelete = () => {
