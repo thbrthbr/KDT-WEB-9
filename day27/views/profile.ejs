@@ -11,7 +11,14 @@
     <form name="profile-form">
       <fieldset>
         <legend>프로필</legend>
-        이름 <input type="text" id="name" name="name" value="<%=data.name%>" />
+        이름
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="<%=data.name%>"
+          readonly
+        />
         <br />
         <input
           type="text"
@@ -20,7 +27,8 @@
           placeholder="이름 수정"
         />
         <br />
-        아이디 <input type="text" id="id" name="id" value="<%=data.id%>" />
+        아이디
+        <input type="text" id="id" name="id" value="<%=data.id%>" readonly />
         <br />
         <input
           type="text"
@@ -30,7 +38,13 @@
         />
         <br />
         비밀번호
-        <input type="password" id="pw" name="pw" value="<%=data.pw%>" />
+        <input
+          type="password"
+          id="pw"
+          name="pw"
+          value="<%=data.pw%>"
+          readonly
+        />
         <br />
         <input
           type="password"
@@ -63,6 +77,9 @@
           form.id.value = modifyId
           form.name.value = modifyName
           form.pw.value = modifyPw
+          form.modifyId.value = ''
+          form.modifyName.value = ''
+          form.modifyPw.value = ''
         })
       }
       const profileDelete = () => {
@@ -78,7 +95,6 @@
           window.location.href = '/user/signin'
         })
       }
-      //   console.log(data)
     </script>
   </body>
 </html>
