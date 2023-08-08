@@ -8,15 +8,15 @@ app.set('views', './views')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-const visitorRouter = require('./routes/visitor')
+const userRouter = require('./routes/user')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('start')
 })
 
-app.use('/visitor', visitorRouter)
+app.use('/user', userRouter)
 
-app.use('*', (req, res) => {
+app.get('*', (req, res) => {
   res.render('404')
 })
 

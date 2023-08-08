@@ -16,31 +16,8 @@ conn.connect((err) => {
   console.log('connect')
 })
 
-exports.getVisitors = (callback) => {
-  const query = 'SELECT * FROM visitor'
-  conn.query(query, (err, rows) => {
-    if (err) {
-      console.log('error: ', err)
-      return
-    }
-    console.log(rows)
-    callback(rows)
-  })
-}
-
-exports.getVisitor = (id, callback) => {
-  const query = `SELECT * FROM visitor WHERE id='${id}'`
-  conn.query(query, (err, rows) => {
-    if (err) {
-      console.log('error: ', err)
-      return
-    }
-    callback(rows)
-  })
-}
-
-exports.postVisitor = (data, callback) => {
-  const query = `INSERT INTO visitor (name, comment) VALUES ('${data.name}', '${data.comment}')`
+exports.postSignup = (data, callback) => {
+  const query = `INSERT INTO login (userid, pw, name) VALUES ('${data.id}', '${data.pw}', '${data.name}')`
   conn.query(query, (err, rows) => {
     if (err) {
       console.log('error: ', err)
@@ -51,10 +28,23 @@ exports.postVisitor = (data, callback) => {
   })
 }
 
-exports.patchVisitor = (data, callback) => {
-  const query = `UPDATE visitor SET name='${data.name}', comment='${data.comment}' WHERE id='${data.id}'`
+exports.postSignin = (data, callback) => {
+  const query = `SELECT * FROM login WHERE userid = '${data.id}' and pw = '${data.pw}'`
+  console.log(query)
   conn.query(query, (err, rows) => {
+    if (err) {
+      console.log('error: ', err)
+      return
+    }
     console.log('rows', rows)
+    callback(rows)
+  })
+}
+
+exports.deleteUser = (data, callback) => {
+  console.log(data.id)
+  const query = `DELETE FROM login WHERE userid='${data.id}'`
+  conn.query(query, (err, rows) => {
     if (err) {
       console.log(err)
       return
@@ -63,9 +53,11 @@ exports.patchVisitor = (data, callback) => {
   })
 }
 
-exports.deleteVisitor = (data, callback) => {
-  const query = `DELETE FROM visitor WHERE id=${data.id}`
+exports.patchUser = (data, callback) => {
+  console.log(data.id)
+  const query = `UPDATE login SET userid='${data.id}' WHERE userid='${data.befId}'`
   conn.query(query, (err, rows) => {
+    console.log('rows', rows)
     if (err) {
       console.log(err)
       return
