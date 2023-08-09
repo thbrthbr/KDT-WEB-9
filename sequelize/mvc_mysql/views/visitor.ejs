@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="visitor-form">
+      <fieldset>
+        <legend>방명록 등록</legend>
+        <input type="text" id="name" placeholder="사용자 이름" /><br />
+        <input type="text" id="comment" placeholder="방명록" /><br />
+        <button type="button" onclick="registerComment()">등록</button>
+      </fieldset>
+    </form>
+    <br />
+    <table border="1" cellspacing="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>작성자</th>
+          <th>방명록</th>
+          <th>수정</th>
+          <th>삭제</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < data.length; i++){ %>
+        <tr id="tr_<%= data[i].id %>">
+          <td>
+            <a href="/visitor/get?id=<%= data[i].id %>"><%= data[i].id %></a>
+          </td>
+          <td><%= data[i].name %></td>
+          <td><%= data[i].comment %></td>
+          <td>
+            <button type="button" onclick="editVisitor(`<%= data[i].id%>`)">
+              수정
+            </button>
+          </td>
+          <td>
+            <button type="button" onclick="deleteVisitor(`<%= data[i].id%>`)">
+              삭제
+            </button>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script>
+      const body = document.querySelector('tbody')
+      const registerComment = () => {
+        console.log('register comment')
+        const form = document.forms['visitor-form']
+        axios({
+          method: 'POST',
+          url: '/visitor/write',
+          data: {
+            name: form.name.value,
+            comment: form.comment.value,
+          },
+        }).then((res) => {
+          console.log('res', res)
+          const html = `
+            <tr id=tr_${res.data.id}>
+            <td>${res.data.id}</td>
+            <td>${res.data.name}</td>
+            <td>${res.data.comment}</td>
+            <td><button type="button">수정</button></td>
+            <td><button type="button">삭제</button></td>
+            </tr>
+            `
+          body.insertAdjacentHTML('beforeend', html)
+        })
+      }
+      const editVisitor = (id) => {
+        const form = document.forms['visitor-form']
+        axios({
+          method: 'PATCH',
+          url: '/visitor/edit',
+          data: {
+            id: Number(id),
+            name: form.name.value,
+            comment: form.comment.value,
+          },
+        }).then((res) => {
+          console.log('res', res)
+          if (res.data.result) {
+            window.location.reload()
+          }
+        })
+      }
+      const deleteVisitor = (id) => {
+        if (!confirm('삭제하시겠습니까?')) {
+          return
+        }
+        axios({
+          method: 'DELETE',
+          url: '/visitor/delete',
+          data: {
+            id: Number(id),
+          },
+        }).then((res) => {
+          if (res.data.result) {
+            window.location.reload()
+          }
+        })
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>로그인 성공한 유저</h1>
+    <form name="profile-form">
+      <fieldset>
+        <legend>프로필</legend>
+        이름
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value="<%=data.name%>"
+          readonly
+        />
+        <br />
+        <input
+          type="text"
+          id="modifyName"
+          name="modifyName"
+          placeholder="이름 수정"
+        />
+        <br />
+        아이디
+        <input type="text" id="id" name="id" value="<%=data.id%>" readonly />
+        <br />
+        <input
+          type="text"
+          id="modifyId"
+          name="modifyId"
+          placeholder="ID 수정"
+        />
+        <br />
+        비밀번호
+        <input
+          type="password"
+          id="pw"
+          name="pw"
+          value="<%=data.pw%>"
+          readonly
+        />
+        <br />
+        <input
+          type="password"
+          id="modifyPw"
+          name="modifyPw"
+          placeholder="PW 수정"
+        />
+        <button type="button" onclick="profileEdit()">수정</button>
+        <button type="button" onclick="profileDelete()">삭제</button>
+      </fieldset>
+    </form>
+    <script>
+      const profileEdit = () => {
+        const form = document.forms['profile-form']
+        const modifyId = document.querySelector('#modifyId').value
+        const modifyName = document.querySelector('#modifyName').value
+        const modifyPw = document.querySelector('#modifyPw').value
+        axios({
+          method: 'PATCH',
+          url: '/user/profile/patch',
+          data: {
+            befId: form.id.value,
+            name: modifyName,
+            id: modifyId,
+            pw: modifyPw,
+          },
+        }).then((res) => {
+          console.log(res)
+          alert('회원정보 수정 성공!')
+          form.id.value = modifyId
+          form.name.value = modifyName
+          form.pw.value = modifyPw
+          form.modifyId.value = ''
+          form.modifyName.value = ''
+          form.modifyPw.value = ''
+        })
+      }
+      const profileDelete = () => {
+        const form = document.forms['profile-form']
+        axios({
+          method: 'DELETE',
+          url: '/user/profile/delete',
+          data: {
+            id: form.id.value,
+          },
+        }).then((res) => {
+          alert('회원탈퇴 완료!')
+          window.location.href = '/user/signin'
+        })
+      }
+    </script>
+  </body>
+</html>
