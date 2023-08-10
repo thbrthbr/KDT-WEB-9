@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Profile Page</h1>
+        <a href="/user">홈으로 이동</a>
+        <form name="form-profile">
+            <input type="hidden" id="id" value="<%= data.id %>" />
+            <input type="text" id="userid" value="<%= data.userid %>" readonly /><br />
+            <input type="password" id="pw" value="<%= data.pw %>" /><br />
+            <input type="text" id="nickname" value="<%= data.name %>" /><br />
+            <button type="button" onclick="profileEdit()">수정</button>
+            <button type="button" onclick="profileDelete('<%= data.id %>')">삭제</button>
+        </form>
+
+        <script>
+            function profileEdit() {
+                const form = document.forms['form-profile'];
+                axios({
+                    method: 'PATCH',
+                    url: '/user/profile/edit',
+                    data: {
+                        id: Number(form.id.value),
+                        userid: form.userid.value,
+                        pw: form.pw.value,
+                        name: form.nickname.value,
+                    },
+                }).then((res) => {
+                    if (res.data.result) {
+                        alert('회원정보가 수정되었습니다.');
+                    }
+                });
+            }
+            function profileDelete(id) {
+                if (!confirm('삭제하시겠습니까?')) {
+                    return;
+                }
+                axios({
+                    method: 'DELETE',
+                    url: '/user/profile/delete',
+                    data: {
+                        id: Number(id),
+                    },
+                }).then((res) => {
+                    if (res.data.result) {
+                        alert('삭제가 완료되었습니다');
+                        window.location.href = '/user';
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
