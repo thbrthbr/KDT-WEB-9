@@ -10,7 +10,9 @@ exports.getVisitors = (req, res) => {
   //   res.render('visitor', { data: rows })
   // })
   models.Visitor.findAll().then((result) => {
+    console.log('findAll', result)
     res.render('visitor', { data: result })
+    // res.send({ data: result })
   })
 }
 
