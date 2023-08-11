@@ -4,7 +4,7 @@ const app = express()
 const PORT = 8000
 
 // 세션 옵션 객체
-// httpOnly: 값을 true로 하면 사용자가 자바스크리브를 통해서
+// httpOnly: 값을 true로 하면 사용자가 자바스크립트를 통해서
 // 세션을 사용할 수 없도록 강제
 // secure: 값을 true로 하면 https에서만 세션을 주고받음
 // secret: 안전하게 쿠키를 전송하기 위한 쿠키 서명값
@@ -29,13 +29,14 @@ app.use(
 
 app.get('/', (req, res) => {
   // 세션설정 req.session.키
-  req.session.name = '홍길동'
+  let random = Math.random()
+  req.session.key = random
   res.send('세션 설정 완료')
 })
 
 app.get('/name', (req, res) => {
-  //   console.log(req.session.name)
-  res.send({ id: req.sessionID, name: req.session.name })
+  console.log(req.session.key)
+  res.send({ id: req.sessionID, name: req.session.key })
 })
 
 app.get('/destroy', (req, res) => {
@@ -44,6 +45,7 @@ app.get('/destroy', (req, res) => {
       console.log(err)
       return
     }
+    console.log(req.session)
     res.redirect('/name')
   })
 })
