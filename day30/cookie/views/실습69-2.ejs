@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <p><%= data %> 님 환영합니다</p>
+    <button type="button" onclick="logout()">로그아웃</button>
+    <script>
+      function logout() {
+        axios({
+          method: 'post',
+          url: '/logout',
+          data: {},
+        }).then((res) => {
+          console.log(res)
+          window.location.href = '/'
+        })
+      }
+    </script>
+  </body>
+</html>
