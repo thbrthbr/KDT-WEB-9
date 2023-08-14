@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    아이디 <input type="text" name="id" id="id" /> <br />
+    비밀번호 <input type="password" name="pw" id="pw" /> <br />
+    <button type="button">회원가입</button>
+    <button type="button" onclick="login()">로그인</button>
+    <form action="/2" method="post" name="hidden-form">
+      <input type="hidden" name="hidden" id="hidden" />
+    </form>
+    <script>
+      function login() {
+        // const token = document.querySelector('#id').value
+        axios({
+          method: 'post',
+          url: '/login',
+          // header: {
+          //   Authoriazion: `Bearer ${token}`
+          // }
+          data: {
+            id: document.querySelector('#id').value,
+            pw: document.querySelector('#pw').value,
+          },
+        }).then((res) => {
+          if (res.data.result == false) {
+            console.log(res.data.user)
+            alert('로그인 실패')
+          } else {
+            window.localStorage.setItem('jwt', res.data.data)
+            // window.location.reload()
+            const form = document.forms['hidden-form']
+            form.hidden.value = res.data.data
+            console.log(form)
+            form.submit()
+            // document.querySelector('#hidden').value = res.data.data
+            // window.location.href = '/2'
+          }
+        })
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JWT 실습</h1>
+    <div id="button"></div>
+    <!-- <a href="/signup">회원가입</a>
+    <a href="/login">로그인</a> -->
+
+    <script>
+      ;(async function () {
+        const token = localStorage.getItem('login')
+        const button = document.querySelector('#button')
+        console.log(token)
+        let data = ''
+        if (!token) {
+          data = `
+          <a href="/signup">회원가입</a>
+          <a href="/login">로그인</a>
+        `
+        } else {
+          const res = await axios({
+            method: 'GET',
+            url: '/token',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          console.log('res', res.data)
+          if (res.data.result) {
+            data = `
+            <p>${res.data.name}님 환영합니다</p>
+            <button type="button" onclick="logout()">로그아웃</button>
+            `
+          }
+        }
+        button.innerHTML = data
+      })()
+
+      function logout() {
+        localStorage.clear()
+        document.location.href = '/'
+      }
+    </script>
+  </body>
+</html>
