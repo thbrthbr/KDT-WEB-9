@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 8000
+require('dotenv').config()
 
 let hash = ''
 
@@ -12,6 +13,8 @@ app.use(express.json())
 
 //router
 app.get('/', (req, res) => {
+  console.log(process.env.NAME)
+  console.log(process.env.NODE_ENV)
   res.render('index')
 })
 
@@ -58,7 +61,7 @@ const createHashedPassWord = (password) => {
 const salt = crypto.randomBytes(16).toString('base64') // 솔트생성
 const iterations = 100 // 반복 횟수
 const keylen = 64 // 생성할 키의 길이
-const digest = 'sha512' // 해시 알고리즘
+const digest = process.env.HASH // 해시 알고리즘
 
 // 단방향 암호화 생성
 const createPbkdf = (password) => {
