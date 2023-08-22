@@ -7,28 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <!-- <h1>싱글 연습</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="userfile" /> <br />
-      <input type="text" name="title" /> <br />
-      <button type="submit">업로드</button>
-    </form> -->
-
-    <!-- <h1>멀티 연습 ver1 : 한번에 여러개 업로드</h1>
-    <form action="/upload/array" method="POST" enctype="multipart/form-data">
-      <input type="file" name="userfiles" multiple /> <br />
-      <input type="text" name="title" /> <br />
-      <button type="submit">업로드</button>
-    </form> -->
-
-    <!-- <h1>멀티 연습 ver2 : 여러개의 요청</h1>
-    <form action="/upload/fields" method="POST" enctype="multipart/form-data">
-      <input type="file" name="userfile1" /> <br />
-      <input type="text" name="title1" /> <br />
-      <input type="file" name="userfile2" multiple /> <br />
-      <input type="text" name="title2" /> <br />
-      <button type="submit">업로드</button>
-    </form> -->
     <h1>동적 파일 업로드</h1>
     <form onsubmit="fileupload(event)">
       <input type="file" id="dynamic" multiple /> <br />
@@ -40,7 +18,7 @@
     <script>
       const resultBox = document.querySelector('.result')
       const fileupload = async (event) => {
-        event.preventDefault() // 기본 제출 동작 막기
+        event.preventDefault()
         console.log('file upload')
         const title = document.querySelector('#title').value
 
@@ -48,21 +26,26 @@
         console.log(file.files)
         console.log(title)
 
+        const formData = new FormData()
         for (let i = 0; i < file.files.length; i++) {
-          const formData = new FormData()
           formData.append('title', title)
           formData.append('dynamic', file.files[i])
-          let res = await axios({
-            method: 'POST',
-            url: '/dynamic',
-            data: formData,
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-          console.log('res', res.data)
+        }
+        console.log(formData)
+
+        let res = await axios({
+          method: 'POST',
+          url: '/dynamic',
+          data: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+
+        console.log('res', res.data)
+        for (let i = 0; i < res.data.length; i++) {
           let tag = document.createElement('img')
-          tag.src = res.data[0].path
+          tag.src = res.data[i].path
           tag.style.cssText = `
             width: 100px;
             height: 100px;
