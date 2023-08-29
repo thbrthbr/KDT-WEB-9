@@ -40,13 +40,21 @@ wss.on('connection', (socket) => {
     let data = JSON.parse(message)
     if (data.type == 1) {
       db.A++
-    } else {
+      sockets.forEach((elem) => {
+        elem.send(`${message.toString('utf-8')}`)
+      })
+    } else if (data.type == 2) {
       db.B++
+      sockets.forEach((elem) => {
+        elem.send(`${message.toString('utf-8')}`)
+      })
+    } else {
+      socket.send(JSON.stringify(db))
+      sockets.forEach((elem) => {
+        elem.send(JSON.stringify(db))
+      })
     }
     console.log(db)
-    sockets.forEach((elem) => {
-      elem.send(`${message.toString('utf-8')}`)
-    })
   })
 
   // 오류 이벤트

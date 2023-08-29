@@ -25,6 +25,7 @@
         //send() 함수는 백엔드로 메세지를 전송
         console.log('서버에 연결되었습니다')
         console.log(event)
+        socket.send(JSON.stringify({ type: 3, num: null }))
         // document.querySelector('#resultOne').innerText =
         // document.querySelector('#resultTwo').innerText =
       })
@@ -32,10 +33,15 @@
       socket.addEventListener('message', (event) => {
         let data = JSON.parse(event.data)
         console.log(data.num)
-        if (data.type == 1) {
-          document.querySelector('#resultOne').innerText = data.num + 1
+        if (data.type) {
+          if (data.type == 1) {
+            document.querySelector('#resultOne').innerText = data.num + 1
+          } else {
+            document.querySelector('#resultTwo').innerText = data.num + 1
+          }
         } else {
-          document.querySelector('#resultTwo').innerText = data.num + 1
+          document.querySelector('#resultOne').innerText = data.A
+          document.querySelector('#resultTwo').innerText = data.B
         }
       })
       //오류이벤트

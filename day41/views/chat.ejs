@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <ul></ul>
+    <form id="chat">
+      <input type="text" id="message" placeholder="채팅내용" /><br />
+      <button>채팅</button>
+      <button type="button" onclick="leave()">나가기</button>
+    </form>
+
+    <script>
+      const chatForm = document.querySelector('#chat')
+      const ul = document.querySelector('ul')
+      // 클라이언트 소켓 연결
+      const socket = io()
+
+      // 채팅방 생성
+      const chatRoom = prompt('채팅방명을 입력하세요')
+      socket.emit('join', chatRoom)
+
+      // 브라우저 접속시 이벤트
+      socket.on('create', (res) => {
+        const li = document.createElement('li')
+        li.textContent = res
+        ul.appendChild(li)
+      })
+
+      // 서버에서 보내주는 값
+      socket.on('chat', (res) => {
+        const li = document.createElement('li')
+        li.textContent = res
+        ul.appendChild(li)
+      })
+
+      // 폼 이벤트
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const msg = chatForm.querySelector('#message')
+        // let data = {
+        //   user: socket.rooms,
+        //   message: msg.value,
+        // }
+        // socket.emit('message', msg.value)
+        socket.emit('message', msg.value)
+        msg.value = ''
+      })
+
+      const leave = () => {
+        console.log('leave')
+        socket.emit('leave')
+      }
+    </script>
+  </body>
+</html>

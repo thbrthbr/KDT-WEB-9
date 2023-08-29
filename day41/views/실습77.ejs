@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div>Hello World!</div>
+    <ul></ul>
+    <form id="chat">
+      <button id="hello">hello</button>
+      <button id="study">study</button>
+      <button id="bye">bye</button>
+    </form>
+    <div class="status"></div>
+    <script>
+      const chatForm = document.querySelector('#chat')
+      const ul = document.querySelector('ul')
+      const socket = io()
+      // 이벤트 생성
+      socket.emit(
+        'open_message',
+        { name: 'client', message: 'Hello Server' },
+        (res) => {
+          console.log(res)
+        },
+      )
+      socket.on('backend_message', (arg) => {
+        document.querySelector('.status').innerText =
+          arg.type + ': ' + arg.message
+      })
+
+      document.querySelector('#hello').addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(e.target.innerText)
+        socket.emit('type', {
+          type: 'hello',
+          message: '안녕하세요',
+        })
+      })
+      document.querySelector('#study').addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(e.target.innerText)
+        socket.emit('type', {
+          type: 'study',
+          message: '공부합시다',
+        })
+      })
+      document.querySelector('#bye').addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log(e.target.innerText)
+        socket.emit('type', {
+          type: 'bye',
+          message: '안녕히계세요',
+        })
+      })
+    </script>
+  </body>
+</html>

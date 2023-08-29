@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Document</title>
+    <style>
+      p {
+        margin: 0;
+      }
+      .right {
+        text-align: right;
+      }
+      .left {
+        text-align: left;
+      }
+      .center {
+        text-align: center;
+        background-color: none;
+      }
+      .message {
+        display: inline-block;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      .right .message {
+        background-color: yellow;
+      }
+      .left .message {
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="chatDoc"
+      style="
+        width: 300px;
+        height: 500px;
+        background-color: skyblue;
+        overflow-y: scroll;
+      "
+    ></div>
+    <form id="chat">
+      <input
+        type="text"
+        id="message"
+        placeholder="채팅내용"
+        style="width: 180px"
+      />
+      <button>채팅</button>
+      <button type="button" onclick="leave()">나가기</button>
+    </form>
+
+    <script>
+      const chatForm = document.querySelector('#chat')
+      const ul = document.querySelector('ul')
+      // 클라이언트 소켓 연결
+      const socket = io()
+
+      // 채팅방 생성
+      const chatRoom = prompt('채팅방명을 입력하세요')
+      socket.emit('join', chatRoom)
+
+      // 브라우저 접속시 이벤트
+      socket.on('create', (res) => {
+        chatDoc.innerHTML += `<p class="center"><span class="message">${res}</span></p>`
+      })
+
+      // 서버에서 보내주는 값
+      socket.on('chat', (data) => {
+        const alignClass = data.sender === socket.id ? 'right' : 'left'
+        chatDoc.innerHTML += `<p class="${alignClass}"><span class="message">${data.message}</span></p>`
+      })
+
+      // 폼 이벤트
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const msg = chatForm.querySelector('#message')
+        // let data = {
+        //   user: socket.rooms,
+        //   message: msg.value,
+        // }
+        // socket.emit('message', msg.value)
+        socket.emit('message', msg.value)
+        msg.value = ''
+      })
+
+      const leave = () => {
+        console.log('leave')
+        socket.emit('leave')
+      }
+    </script>
+  </body>
+</html>
